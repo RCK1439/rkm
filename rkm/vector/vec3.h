@@ -4,12 +4,12 @@
 #include "../core/common.h"
 
 #define RKM_VEC3_TYPE_GEN(name, type)\
-typedef struct name##_s {\
+typedef struct {\
     union {\
         struct { type e[3]; };\
         struct { type x, y, z; };\
         struct { type r, g, b; };\
-        struct { type s, t, u; };\
+        struct { type s, t, p; };\
     };\
 } name##_t;\
 RKMAPI name##_t rkm_##name##_new(type e1, type e2, type e3) {\
@@ -48,7 +48,7 @@ RKMAPI type rkm_##name##_len(name##_t v) {\
 }\
 RKMAPI name##_t rkm_##name##_norm(name##_t v) {\
     const type len = rkm_##name##_len(v);\
-    RKM_ASSERT(len != 0, "Cannot normalize with 0 length");\
+    RKM_ASSERT(len != 0, "Cannot normalize; length is 0");\
     return rkm_##name##_new(v.x / len, v.y / len, v.z / len);\
 }\
 

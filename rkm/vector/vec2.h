@@ -4,7 +4,7 @@
 #include "../core/common.h"
 
 #define RKM_VEC2_TYPE_GEN(name, type)\
-typedef struct name##_s {\
+typedef struct {\
     union {\
         struct { type e[2]; };\
         struct { type x, y; };\

@@ -6,7 +6,10 @@
 typedef struct mat2_s {
     union {
         struct { float e[4]; };
-        struct { float e11, e21, e12, e22; };
+        struct {
+            float e11, e21;
+            float e12, e22;
+        };
     };
 } mat2_t;
 

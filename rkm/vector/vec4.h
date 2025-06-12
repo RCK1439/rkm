@@ -3,72 +3,68 @@
 
 #include "../core/common.h"
 
-#define RKM_VEC4_TYPE_GEN(name, base_type)\
-typedef struct name##_s {\
+#define RKM_VEC4_TYPE_GEN(name, type)\
+typedef struct {\
     union {\
-        struct { base_type e[4]; };\
-        struct { base_type x, y, z, w; };\
-        struct { base_type r, g, b, a; };\
-        struct { base_type s, t, u, v; };\
+        struct { type e[4]; };\
+        struct { type x, y, z, w; };\
+        struct { type r, g, b, a; };\
+        struct { type s, t, p, q; };\
     };\
-} name##_t
+} name##_t;\
+\
+RKMAPI name##_t rkm_##name##_new(type e1, type e2, type e3, type e4) {\
+    return (name##_t) { { e1, e2, e3, e4 } };\
+}\
+RKMAPI name##_t rkm_##name##_zeros(void) {\
+    return rkm_##name##_new(0, 0, 0, 0);\
+}\
+RKMAPI name##_t rkm_##name##_ones(void) {\
+    return rkm_##name##_new(1, 1, 1, 1);\
+}\
+RKMAPI name##_t rkm_##name##_add(name##_t lhs, name##_t rhs) {\
+    return rkm_##name##_new(\
+        lhs.x + rhs.y,\
+        lhs.x + rhs.y,\
+        lhs.z + rhs.z,\
+        lhs.w + rhs.w\
+    );\
+}\
+RKMAPI name##_t rkm_##name##_sub(name##_t lhs, name##_t rhs) {\
+    return rkm_##name##_new(\
+        lhs.x - rhs.y,\
+        lhs.x - rhs.y,\
+        lhs.z - rhs.z,\
+        lhs.w - rhs.w\
+    );\
+}\
+RKMAPI name##_t rkm_##name##_scale(type s, name##_t v) {\
+    return rkm_##name##_new(\
+        s * v.x,\
+        s * v.y,\
+        s * v.z,\
+        s * v.w\
+    );\
+}\
+RKMAPI type rkm_##name##_dot(name##_t lhs, name##_t rhs) {\
+    return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z + lhs.w * rhs.w;\
+}\
+RKMAPI type rkm_##name##_lensqr(name##_t v) {\
+    return rkm_##name##_dot(v, v);\
+}\
+RKMAPI type rkm_##name##_len(name##_t v) {\
+    return (type) sqrt(rkm_##name##_lensqr(v));\
+}\
+RKMAPI name##_t rkm_##name##_norm(name##_t v) {\
+    const type len = rkm_##name##_len(v);\
+    RKM_ASSERT(len != 0, "Cannot normalize; length is 0");\
+    return rkm_##name##_new(v.x / len, v.y / len, v.z / len, v.w / len);\
+}\
 
-RKM_VEC4_TYPE_GEN(vec4, float);
-
-RKMAPI vec4_t rkm_vec4_new(float e1, float e2, float e3, float e4) {
-    return (vec4_t) { { e1, e2, e3, e4 } };
-}
-
-RKMAPI vec4_t rkm_vec4_zeroed(void) {
-    return rkm_vec4_new(0.0f, 0.0f, 0.0f, 0.0f);
-}
-
-RKMAPI vec4_t rkm_vec4_ones(void) {
-    return rkm_vec4_new(1.0f, 1.0f, 1.0f, 1.0f);
-}
-
-RKMAPI vec4_t rkm_vec4_add(vec4_t lhs, vec4_t rhs) {
-    return rkm_vec4_new(
-        lhs.x + rhs.y,
-        lhs.x + rhs.y,
-        lhs.z + rhs.z,
-        lhs.w + rhs.w
-    );
-}
-
-RKMAPI vec4_t rkm_vec4_sub(vec4_t lhs, vec4_t rhs) {
-    return rkm_vec4_new(
-        lhs.x - rhs.y,
-        lhs.x - rhs.y,
-        lhs.z - rhs.z,
-        lhs.w - rhs.w
-    );
-}
-
-RKMAPI vec4_t rkm_vec4_scale(float s, vec4_t v) {
-    return rkm_vec4_new(
-        s * v.x,
-        s * v.y,
-        s * v.z,
-        s * v.w
-    );
-}
-
-RKMAPI float rkm_vec4_dot(vec4_t lhs, vec4_t rhs) {
-    return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z + lhs.w * rhs.w;
-}
-
-RKMAPI float rkm_vec4_lensqr(vec4_t v) {
-    return rkm_vec4_dot(v, v);
-}
-
-RKMAPI float rkm_vec4_len(vec4_t v) {
-    return sqrtf(rkm_vec4_lensqr(v));
-}
-
-RKMAPI vec4_t rkm_vec4_norm(vec4_t v) {
-    return rkm_vec4_scale(1.0f / rkm_vec4_len(v), v);
-}
+RKM_VEC4_TYPE_GEN(vec4, float)
+RKM_VEC4_TYPE_GEN(vec4d, double)
+RKM_VEC4_TYPE_GEN(vec4i, int32_t)
+RKM_VEC4_TYPE_GEN(vec4u, uint32_t)
 
 #endif /* RKM_VEC4_H */
 
