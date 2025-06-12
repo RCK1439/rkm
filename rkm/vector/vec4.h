@@ -24,16 +24,16 @@ RKMAPI name##_t rkm_##name##_ones(void) {\
 }\
 RKMAPI name##_t rkm_##name##_add(name##_t lhs, name##_t rhs) {\
     return rkm_##name##_new(\
-        lhs.x + rhs.y,\
-        lhs.x + rhs.y,\
+        lhs.x + rhs.x,\
+        lhs.y + rhs.y,\
         lhs.z + rhs.z,\
         lhs.w + rhs.w\
     );\
 }\
 RKMAPI name##_t rkm_##name##_sub(name##_t lhs, name##_t rhs) {\
     return rkm_##name##_new(\
-        lhs.x - rhs.y,\
-        lhs.x - rhs.y,\
+        lhs.x - rhs.x,\
+        lhs.y - rhs.y,\
         lhs.z - rhs.z,\
         lhs.w - rhs.w\
     );\
