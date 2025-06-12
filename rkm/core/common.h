@@ -5,8 +5,9 @@
 
 #include <assert.h>
 #include <math.h>
-#include <stddef.h>
 #include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
 
 #endif /* RKM_COMMON_H */
 

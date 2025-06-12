@@ -1,6 +1,6 @@
 #include <stdio.h>
 #define RKM_IMPLEMENTATION
-#include "include/rkm.h"
+#include "rkm/rkm.h"
 
 #define PI 3.14159265359f
 

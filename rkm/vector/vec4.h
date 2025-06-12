@@ -1,20 +1,19 @@
 #ifndef RKM_VEC4_H
 #define RKM_VEC4_H
 
-#include "../core/setup.h"
+#include "../core/common.h"
 
-#include <math.h>
-#include <stddef.h>
-#include <stdio.h>
+#define RKM_VEC4_TYPE_GEN(name, base_type)\
+typedef struct name##_s {\
+    union {\
+        struct { base_type e[4]; };\
+        struct { base_type x, y, z, w; };\
+        struct { base_type r, g, b, a; };\
+        struct { base_type s, t, u, v; };\
+    };\
+} name##_t
 
-typedef struct vec4_s {
-    union {
-        struct { float e[4]; };
-        struct { float x, y, z, w; };
-        struct { float s, t, u, q; };
-        struct { float r, g, b, a; };
-    };
-} vec4_t;
+RKM_VEC4_TYPE_GEN(vec4, float);
 
 RKMAPI vec4_t rkm_vec4_new(float e1, float e2, float e3, float e4) {
     return (vec4_t) { { e1, e2, e3, e4 } };
