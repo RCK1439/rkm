@@ -53,7 +53,7 @@ RKMAPI type rkm_##name##_lensqr(name##_t v) {\
     return rkm_##name##_dot(v, v);\
 }\
 RKMAPI type rkm_##name##_len(name##_t v) {\
-    return (type) sqrt(rkm_##name##_lensqr(v));\
+    return (type) sqrt((double) rkm_##name##_lensqr(v));\
 }\
 RKMAPI name##_t rkm_##name##_norm(name##_t v) {\
     const type len = rkm_##name##_len(v);\
