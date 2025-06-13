@@ -57,7 +57,7 @@ RKMAPI type rkm_##name##_len(name##_t v) {\
 }\
 RKMAPI name##_t rkm_##name##_norm(name##_t v) {\
     const type len = rkm_##name##_len(v);\
-    RKM_ASSERT(len != 0, "Cannot normalize; length is 0");\
+    RKM_ASSERT(len != 0, RKM_DIVIDE_BY_ZERO);\
     return rkm_##name##_new(v.x / len, v.y / len, v.z / len, v.w / len);\
 }\
 

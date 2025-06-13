@@ -3,7 +3,7 @@
 
 #include "../core/common.h"
 
-typedef struct complex_s {
+typedef struct {
     float re;
     float im;
 } complex_t;
@@ -53,7 +53,7 @@ RKMAPI complex_t rkm_complex_muls(float s, complex_t z) {
 
 RKMAPI complex_t rkm_complex_div(complex_t lhs, complex_t rhs) {
     const float abssqr = rkm_complex_abssqr(rhs);
-    RKM_ASSERT(abssqr != 0.0f, "Cannot divide by |0| complex number");
+    RKM_ASSERT(abssqr != 0.0f, RKM_DIVIDE_BY_ZERO);
 
     return rkm_complex_muls(
         1.0f / abssqr,
@@ -62,7 +62,7 @@ RKMAPI complex_t rkm_complex_div(complex_t lhs, complex_t rhs) {
 }
 
 RKMAPI complex_t rkm_complex_divs(float s, complex_t z) {
-    RKM_ASSERT(s != 0.0f, "Cannot divide by 0");
+    RKM_ASSERT(s != 0.0f, RKM_DIVIDE_BY_ZERO);
     return rkm_complex_muls(1.0f / s, z);
 }
 

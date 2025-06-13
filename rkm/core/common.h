@@ -1,6 +1,7 @@
 #ifndef RKM_COMMON_H
 #define RKM_COMMON_H
 
+#include "error.h"
 #include "setup.h"
 
 #include <assert.h>

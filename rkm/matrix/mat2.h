@@ -3,7 +3,7 @@
 
 #include "../core/common.h"
 
-typedef struct mat2_s {
+typedef struct {
     union {
         struct { float e[4]; };
         struct {
@@ -62,7 +62,7 @@ RKMAPI float rkm_mat2_det(mat2_t m) {
 
 RKMAPI mat2_t rkm_mat2_inv(mat2_t m) {
     const float det = rkm_mat2_det(m);
-    RKM_ASSERT(det != 0.0f, "Cannot invert; determinant is 0");
+    RKM_ASSERT(det != 0.0f, RKM_DIVIDE_BY_ZERO);
 
     return rkm_mat2_scale(1.0f / det, rkm_mat2_new(m.e22, -m.e12, -m.e21, m.e11));
 }
