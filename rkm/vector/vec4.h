@@ -48,7 +48,7 @@
         );\
     }\
     RKMAPI name##_t rkm_##name##_div(name##_t lhs, name##_t rhs) {\
-        RKM_ASSERT(rhs.x != 0 && rhs.y != 0 && rhs.z != 0 && rhs.w != 0, RKM_DIVIDE_BY_ZERO);\
+        RKM_ASSERT(rhs.x != (type)0 && rhs.y != (type)0 && rhs.z != (type)0 && rhs.w != (type)0, RKM_DIVIDE_BY_ZERO);\
         return rkm_##name##_new(\
             lhs.x / rhs.x,\
             lhs.y / rhs.y,\
@@ -71,11 +71,11 @@
         return rkm_##name##_dot(v, v);\
     }\
     RKMAPI type rkm_##name##_len(name##_t v) {\
-        return (type) sqrt((double) rkm_##name##_lensqr(v));\
+        return (type)sqrt((double)rkm_##name##_lensqr(v));\
     }\
     RKMAPI name##_t rkm_##name##_norm(name##_t v) {\
         const type len = rkm_##name##_len(v);\
-        RKM_ASSERT(len != 0, RKM_DIVIDE_BY_ZERO);\
+        RKM_ASSERT(len != (type)0, RKM_DIVIDE_BY_ZERO);\
         return rkm_##name##_new(v.x / len, v.y / len, v.z / len, v.w / len);\
     }\
 
