@@ -2,7 +2,7 @@
 #define RKM_H
 
 #include "core/setup.h"
-#include "ext/transf.h"
+#include "ext/ext.h"
 #include "matrix/matrix.h"
 #include "vector/vec.h"
 
