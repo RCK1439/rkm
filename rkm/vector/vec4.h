@@ -17,11 +17,14 @@
     RKMAPI name##_t rkm_##name##_new(type e1, type e2, type e3, type e4) {\
         return (name##_t) { { e1, e2, e3, e4 } };\
     }\
+    RKMAPI name##_t rkm_##name##_new_single(type v) {\
+        return rkm_##name##_new(v, v, v, v);\
+    }\
     RKMAPI name##_t rkm_##name##_zeros(void) {\
-        return rkm_##name##_new((type)0, (type)0, (type)0, (type)0);\
+        return rkm_##name##_new_single((type)0);\
     }\
     RKMAPI name##_t rkm_##name##_ones(void) {\
-        return rkm_##name##_new((type)1, (type)1, (type)1, (type)1);\
+        return rkm_##name##_new_single((type)1);\
     }\
     RKMAPI name##_t rkm_##name##_add(name##_t lhs, name##_t rhs) {\
         return rkm_##name##_new(\
