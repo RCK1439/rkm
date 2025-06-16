@@ -64,9 +64,10 @@ typedef struct {\
     RKMAPI name##_t rkm_##name##_inv(name##_t m) {\
         const type det = rkm_##name##_det(m);\
         RKM_ASSERT(det != (type)0, RKM_DIVIDE_BY_ZERO);\
+        const type inv_det = (type)1 / det;\
         return rkm_##name##_new(\
-            m.e22 / det, -m.e12 / det,\
-           -m.e21 / det,  m.e11 / det\
+            m.e22 * inv_det, -m.e12 * inv_det,\
+           -m.e21 * inv_det,  m.e11 * inv_det\
         );\
     }\
     RKMAPI name##_t rkm_##name##_trans(name##_t m) {\
