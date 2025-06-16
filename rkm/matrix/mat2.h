@@ -44,6 +44,12 @@ typedef struct {\
             lhs.e21 * rhs.e12 + lhs.e22 * rhs.e22\
         );\
     }\
+    RKMAPI name##_t rkm_##name##_comp_mul(name##_t lhs, name##_t rhs) {\
+        return rkm_##name##_new(\
+            lhs.e11 * rhs.e11, lhs.e12 * rhs.e12,\
+            lhs.e21 * rhs.e21, lhs.e22 * rhs.e22\
+        );\
+    }\
     RKMAPI name##_t rkm_##name##_scale(type s, name##_t m) {\
         return rkm_##name##_new(\
             s * m.e11,\
