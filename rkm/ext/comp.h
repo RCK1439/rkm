@@ -2,7 +2,10 @@
 #define RKM_COMP_H
 
 #include "../core/common.h"
-#include "../vector/vec.h"
+
+#include "../vector/vec2.h"
+#include "../vector/vec3.h"
+#include "../vector/vec4.h"
 
 #define RKM_MIN(a, b) (a) < (b) ? (a) : (b)
 #define RKM_MAX(a, b) (a) > (b) ? (a) : (b)
