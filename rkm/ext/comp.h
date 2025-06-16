@@ -7,6 +7,8 @@
 #include "../vector/vec3.h"
 #include "../vector/vec4.h"
 
+// --- macros -----------------------------------------------------------------
+
 #define RKM_MIN(a, b) (a) < (b) ? (a) : (b)
 #define RKM_MAX(a, b) (a) > (b) ? (a) : (b)
 
@@ -14,7 +16,7 @@
 
 #define RKM_MIX(a, b, wb) (a) * (1.0f - (wb)) + (b) * (wb)
 
-/* --- scalar operations --------------------------------------------------- */
+// --- scalar operations ------------------------------------------------------
 
 RKMAPI float rkm_min(float a, float b) {
     return RKM_MIN(a, b);
@@ -32,7 +34,7 @@ RKMAPI float rkm_mix(float a, float b, float wb) {
     return RKM_MIX(a, b, wb);
 }
 
-/* --- vec2 operations ----------------------------------------------------- */
+// --- vec2 component-wise operations -----------------------------------------
 
 RKMAPI vec2_t rkm_vec2_min(vec2_t a, vec2_t b) {
     return rkm_vec2_new(
@@ -78,7 +80,7 @@ RKMAPI vec2_t rkm_vec2_mix_single(vec2_t a, vec2_t b, float wb) {
     return rkm_vec2_mix(a, b, rkm_vec2_fill(wb));
 }
 
-/* --- vec3 operations ----------------------------------------------------- */
+// --- vec3 component-wise operations -----------------------------------------
 
 RKMAPI vec3_t rkm_vec3_min(vec3_t a, vec3_t b) {
     return rkm_vec3_new(
@@ -128,7 +130,7 @@ RKMAPI vec3_t rkm_vec3_mix_single(vec3_t a, vec3_t b, float wb) {
     return rkm_vec3_mix(a, b, rkm_vec3_fill(wb));
 }
 
-/* --- vec4 operations ----------------------------------------------------- */
+// --- vec4 component-wise operations -----------------------------------------
 
 RKMAPI vec4_t rkm_vec4_min(vec4_t a, vec4_t b) {
     return rkm_vec4_new(
